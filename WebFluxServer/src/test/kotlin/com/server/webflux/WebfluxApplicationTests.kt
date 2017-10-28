@@ -19,7 +19,8 @@ class WebfluxApplicationTests {
 
 		val users = userService.findAll();
         println(users)
-
+      //  userService.findAllReactive().subscribe({s-> println(s)})
+        println(userService.findAllReactive().toStream().forEach({d -> println(d)}))
 	}
 
     @Autowired lateinit var userService: UserService
