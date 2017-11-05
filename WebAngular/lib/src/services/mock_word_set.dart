@@ -2,9 +2,9 @@ import 'package:WebAngular/src/domain/word.dart';
 
 
 var mockWordSet = [
-  new Word.createWordWithTranslates("pencil", Language.ENGLISH, ['карандаш']),
-  new Word.createWordWithTranslates("pen", Language.ENGLISH, ['ручка']),
-  new Word.createWordWithTranslates("hello", Language.ENGLISH, ['привет'])
+  new Word.createWordWithTranslates("pencil", english, ['карандаш']),
+  new Word.createWordWithTranslates("pen", english, ['ручка']),
+  new Word.createWordWithTranslates("hello", english, ['привет'])
 ];
 
 var mockWordSetJson = [

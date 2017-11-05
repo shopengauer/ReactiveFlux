@@ -9,23 +9,32 @@ class Word {
 
   String token;
   Language language;
+  String lang;
   List<String> translates;
 
-  Word.createWord(this.token, this.language);
 
-  Word.createWordWithTranslates(this.token, this.language, this.translates);
+  Word();
+
+  Word.createWord(this.token, this.lang);
+
+  Word.createWordWithTranslates(this.token, this.lang, this.translates);
 
   @override
   String toString() {
-    return 'Word{token: $token, language: $language, translates: $translates}';
+    return 'Word{token: $token, language: $lang, translates: $translates}';
   }
 
-  
+
 
 
 }
 
 enum Language {
+
+
   ENGLISH,
   RUSSIAN
 }
+
+const String english = 'English';
+const String russian = 'Russian';

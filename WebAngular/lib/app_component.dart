@@ -31,7 +31,9 @@ class AppComponent implements OnInit{
  ngOnInit() async {
    print(_wordHttpService);
    wordList = await getWords();
-  // word = await getWord();
+  print(wordList);
+ print(wordList.elementAt(0)) ;
+
  }
 
  Future<List<Word>> getWords() async {
