@@ -13,6 +13,7 @@ class HighlightDirective{
   @HostListener('mouseenter')
   void onMouseEnter(){
      _el.style.backgroundColor = 'grey';
+
   }
 
   @HostListener('mouseleave')

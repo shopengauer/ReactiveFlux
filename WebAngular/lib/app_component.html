@@ -1,14 +1,12 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 
 <h1>Words from </h1>
 
 
-<table class="table">
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
     <thead>
     <tr>
-        <th scope="col">#</th>
+        <th class="mdl-data-table__cell--non-numeric">#</th>
         <th scope="col">Word</th>
         <th scope="col">Language</th>
         <th scope="col">Translates</th>
@@ -16,7 +14,7 @@
     </thead>
     <tbody>
     <tr myhighlight *ngFor="let w of wordList; let i=index">
-        <th scope="row">{{i+1}}</th>
+        <td myhighlight class="mdl-data-table__cell--non-numeric">{{i+1}}</td>
         <td>{{w.token}}</td>
         <td>{{w.lang}}</td>
         <td><p *ngFor="let t of w.translates">{{t}}</p></td>
@@ -24,3 +22,8 @@
 
     </tbody>
 </table>
+
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+    <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
+    <span class="mdl-checkbox__label">Checkbox</span>
+</label>

@@ -2,7 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const config = {
     entry: path.resolve(__dirname, 'src/index.js'),
@@ -20,7 +20,8 @@ const config = {
                 ]
             },
             {
-                test: /js$/ ,
+                test: /js$/,
+                exclude: /(node_modules|bower_compontents)/,
                 use: 'babel-loader'
 
 
@@ -29,10 +30,11 @@ const config = {
     },
 
     devServer: {
-        contentBase: path.join(__dirname,'dist'),
+        contentBase: path.join(__dirname, 'dist'),
         port: 9000,
         compress: true
-    }
+    },
+
 
 };
 
