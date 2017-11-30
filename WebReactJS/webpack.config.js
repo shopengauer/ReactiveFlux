@@ -20,14 +20,21 @@ const config = {
                 ]
             },
             {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'file?name=public/fonts/[name].[ext]'
+            },
+            {
                 test: /js$/,
                 exclude: /(node_modules|bower_compontents)/,
                 use: 'babel-loader'
 
 
-            }
+            },
+
         ]
     },
+
+
 
     devServer: {
         contentBase: path.join(__dirname, 'dist'),

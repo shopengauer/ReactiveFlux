@@ -2,32 +2,14 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 import Button from 'material-ui/Button';
+import SimpleAppBar from './components/appBar'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const App = () => (
 
+    <SimpleAppBar >
 
-
-    //
-    <div>
-    <MuiThemeProvider>
-        <div>
-
-
-
-
-            <Button>
-                Hello World
-            </Button>
-
-        </div>
-    </MuiThemeProvider>
-    </div>
+    </SimpleAppBar>
 
 );
 
-ReactDom.render(<App/>,document.getElementById('root'));
-
-function getDog() {
-
-}
+ReactDom.render(<App/>, document.getElementById('root'));
