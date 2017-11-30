@@ -3,12 +3,18 @@ import ReactDom from 'react-dom';
 
 import Button from 'material-ui/Button';
 import SimpleAppBar from './components/appBar'
+import PaperSheet from './components/papersheet'
 
 const App = () => (
+    <div className='container-fluid'>
 
-    <SimpleAppBar >
+<SimpleAppBar/>
+        <PaperSheet/>
 
-    </SimpleAppBar>
+
+
+
+    </div>
 
 );
 
