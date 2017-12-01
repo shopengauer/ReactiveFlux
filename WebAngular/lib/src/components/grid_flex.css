@@ -1,0 +1,45 @@
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex__item {
+    background: #009688;
+    padding: 1em;
+    border: 1px solid #fff;
+}
+
+.flex__item:nth-child(-n + 3) {
+    flex-basis: 33.33%;
+}
+
+.flex__item:nth-child(n + 4) {
+    flex-grow: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-areas: "a b c d d"
+    "f f g d d";
+}
+
+.grid__item {
+    background: #009688;
+    padding: 1em;
+    border: 1px solid #fff;
+}
+
+.grid__item:nth-child(4) {
+    grid-area: d;
+}
+
+.grid__item:nth-child(5) {
+    grid-area: f;
+}

@@ -3,7 +3,7 @@
 <h1>Words from </h1>
 
 
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<table class="pure-table">
     <thead>
     <tr>
         <th class="mdl-data-table__cell--non-numeric">#</th>
@@ -23,7 +23,40 @@
     </tbody>
 </table>
 
-<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-    <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-    <span class="mdl-checkbox__label">Checkbox</span>
-</label>
+<form class="pure-form">
+    <fieldset>
+        <legend>A compact inline form</legend>
+
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+
+        <label for="remember">
+            <input id="remember" type="checkbox"> Remember me
+        </label>
+
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+    </fieldset>
+</form>
+
+<div class="pure-menu pure-menu-horizontal">
+    <a href="#" class="pure-menu-heading pure-menu-link">BRAND</a>
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">News</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sports</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li>
+    </ul>
+</div>
+
+<div class="pure-menu pure-menu-horizontal">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link">Contact</a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Email</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Twitter</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tumblr Blog</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

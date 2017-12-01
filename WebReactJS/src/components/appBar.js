@@ -7,7 +7,7 @@ import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
     root: {
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing.unit * 10,
         width: '1000%',
     },
 });
@@ -19,7 +19,7 @@ function SimpleAppBar(props) {
             <AppBar position="static" color="default">
                 <Toolbar>
                     <Typography type="title" color="inherit">
-                        Title
+                        English words
                     </Typography>
                 </Toolbar>
             </AppBar>

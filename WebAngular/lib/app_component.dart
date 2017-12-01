@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:WebAngular/src/directives/highlight.dart';
+import 'package:WebAngular/src/components/grid_flex.dart';
 import 'package:WebAngular/src/domain/word.dart';
 import 'package:WebAngular/src/services/mock_client.dart';
 import 'package:WebAngular/src/services/word_http_service.dart';
@@ -15,7 +16,7 @@ import 'package:angular_components/angular_components.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives, HighlightDirective, CORE_DIRECTIVES],
+  directives: const [materialDirectives, HighlightDirective, CORE_DIRECTIVES,GridFlex],
   providers: const [materialProviders, WordHttpService],
 )
 class AppComponent implements OnInit{
