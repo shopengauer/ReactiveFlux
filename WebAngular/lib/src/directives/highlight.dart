@@ -12,7 +12,13 @@ class HighlightDirective{
 
   @HostListener('mouseenter')
   void onMouseEnter(){
-     _el.style.backgroundColor = 'grey';
+     _el.style.backgroundColor = '#CAC4C4';
+
+  }
+
+  @HostListener('dblclick')
+  void onDbClick(){
+     _el.style.backgroundColor = 'red';
 
   }
 

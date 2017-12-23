@@ -1,62 +1,39 @@
+<div class="container-fluid">
 
 
-<h1>Words from </h1>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <table-filter [bookTable]="bt"></table-filter>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
 
-<table class="pure-table">
-    <thead>
-    <tr>
-        <th class="mdl-data-table__cell--non-numeric">#</th>
-        <th scope="col">Word</th>
-        <th scope="col">Language</th>
-        <th scope="col">Translates</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr myhighlight *ngFor="let w of wordList; let i=index">
-        <td myhighlight class="mdl-data-table__cell--non-numeric">{{i+1}}</td>
-        <td>{{w.token}}</td>
-        <td>{{w.lang}}</td>
-        <td><p *ngFor="let t of w.translates">{{t}}</p></td>
-    </tr>
 
-    </tbody>
-</table>
+    <div>
+        <book-table #bt [bookList]="mockBookList" [headers]="headers"></book-table>
 
-<form class="pure-form">
-    <fieldset>
-        <legend>A compact inline form</legend>
+    </div>
 
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Password">
-
-        <label for="remember">
-            <input id="remember" type="checkbox"> Remember me
-        </label>
-
-        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
-    </fieldset>
-</form>
-
-<div class="pure-menu pure-menu-horizontal">
-    <a href="#" class="pure-menu-heading pure-menu-link">BRAND</a>
-    <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">News</a></li>
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sports</a></li>
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li>
-    </ul>
 </div>
 
-<div class="pure-menu pure-menu-horizontal">
-    <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
-        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-            <a href="#" id="menuLink1" class="pure-menu-link">Contact</a>
-            <ul class="pure-menu-children">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Email</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Twitter</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tumblr Blog</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
+
+
+
+
