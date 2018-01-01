@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   angular: ^4.0.0
+
   angular_components: ^0.8.0
   jsonx: ^2.0.2
   bootjack: any

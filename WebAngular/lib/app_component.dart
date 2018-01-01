@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:WebAngular/src/component/editablefield/editable_field.dart';
 import 'package:WebAngular/src/component/table/book_table.dart';
 import 'package:WebAngular/src/component/tablefilter/table_filter.dart';
 import 'package:WebAngular/src/directives/highlight.dart';
@@ -23,7 +24,8 @@ import 'package:bootjack/bootjack.dart';
     CORE_DIRECTIVES,
     Booky,
     BookTable,
-    TableFilter
+    TableFilter,
+    EditableField
   ],
   providers: const [materialProviders, WordHttpService],
 )

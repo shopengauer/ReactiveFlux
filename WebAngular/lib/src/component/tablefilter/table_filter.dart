@@ -14,8 +14,6 @@ class TableFilter{
   BookTable bookTable;
 
 
-
-
   filterTable(String value){
     bookTable.bookListCopy = new List<Booky>.from(bookTable.bookList);
     bookTable.bookListCopy.retainWhere((book) => inputValueTest(book ,value));
@@ -23,7 +21,7 @@ class TableFilter{
   }
 
   bool inputValueTest(Booky book, String value) {
-    print('$book $value');
+   // print('$book $value');
     return book.authors.contains(value) || book.bookName.toLowerCase().contains(value.toLowerCase()) ||
            book.isbn.toLowerCase().contains(value.toLowerCase()) || book.year.toString().contains(value)
     || book.description.toLowerCase().contains(value.toLowerCase());

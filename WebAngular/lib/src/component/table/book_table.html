@@ -1,6 +1,3 @@
-
-
-
 <table class="table">
     <thead>
     <tr>
@@ -10,15 +7,14 @@
     <tbody>
     <tr myhighlight *ngFor="let book of bookListCopy; let i=index">
         <td>{{i+1}}</td>
-        <td (click) = "editToggle">
-            <span *ngIf="!isEdit">{{book.bookName}}</span>
-            <input *ngIf="isEdit" type="text" />
-        </td>
+        <td><ed-field [fieldValue]="book.bookName"></ed-field></td>
 
         <td>{{book.authors}}</td>
-        <td>{{book.isbn}}</td>
-        <td>{{book.year.year}}</td>
-        <td>{{book.description}}</td>
+        <td><ed-field [fieldValue]="book.isbn"></ed-field></td>
+        <td><ed-field [fieldValue]="book.year.year.toString()"></ed-field></td>
+        <td>
+            <ed-field [fieldValue]="book.description"></ed-field>
+        </td>
     </tr>
     </tbody>
 </table>
