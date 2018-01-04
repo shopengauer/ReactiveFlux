@@ -13,7 +13,7 @@ class Booky {
     return 'Booky{bookName: $bookName, authors: $authors, isbn: $isbn, year: $year, description: $description}';
   }
 
-  Map<String, Object> get bookMap => {
+  Map<String, Object> get bookPropMap => {
         "bookName": bookName,
         "authors": authors.toString(),
         "isbn": isbn,

@@ -28,14 +28,11 @@ class BookTable implements OnInit, AfterViewChecked {
     isEdit = false;
   }
 
-  editField(String e){
-    print("Edit string $e");
+  editField(String value, int row, int prop){
+    print("Edit string row: $row prop: $prop");
+     bookListCopy[row].setProperty(prop, value);
+     print(bookListCopy[row].bookName);
   }
-
-
-  String getIndex(int i) => 'id$i';
-//  List<Booky> get bookListCopy => new List.from(bookList);
-//  void set bookListCopy(List<Booky> bookListCopy) => this.bookListCopy = bookListCopy;
 
   @override
   ngAfterViewChecked() {

@@ -5,11 +5,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr myhighlight *ngFor="let book of bookListCopy; let i=index">
-        <td>{{i+1}}</td>
-        <td *ngFor="let prop of book.bookMap.values; let k=index">
-            <ed-field (editRequest)="editField($event)"
-                      [propIndex]="k"
+    <tr myhighlight *ngFor="let book of bookListCopy; let rowIndex=index">
+        <td>{{rowIndex+1}}</td>
+        <td *ngFor="let prop of book.bookPropMap.values; let propIndex=index">
+            <ed-field (editRequest)="editField($event,rowIndex,propIndex)"
+                      [propIndex]="propIndex"
                       [fieldValue]="prop"></ed-field>
         </td>
     </tr>

@@ -34,6 +34,8 @@ class EditableField implements OnInit, OnChanges, AfterViewChecked{
     isEdit = false;
     print(fieldValue.hashCode);
     fieldValue = inputValue;
+    _editRequest.add(inputValue);
+
     print(fieldValue.hashCode);
   }
 
