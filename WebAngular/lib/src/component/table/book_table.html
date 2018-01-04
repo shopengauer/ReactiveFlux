@@ -7,13 +7,10 @@
     <tbody>
     <tr myhighlight *ngFor="let book of bookListCopy; let i=index">
         <td>{{i+1}}</td>
-        <td><ed-field [fieldValue]="book.bookName"></ed-field></td>
-
-        <td>{{book.authors}}</td>
-        <td><ed-field [fieldValue]="book.isbn"></ed-field></td>
-        <td><ed-field [fieldValue]="book.year.year.toString()"></ed-field></td>
-        <td>
-            <ed-field [fieldValue]="book.description"></ed-field>
+        <td *ngFor="let prop of book.bookMap.values; let k=index">
+            <ed-field (editRequest)="editField($event)"
+                      [propIndex]="k"
+                      [fieldValue]="prop"></ed-field>
         </td>
     </tr>
     </tbody>

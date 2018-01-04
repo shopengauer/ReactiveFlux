@@ -1,4 +1,5 @@
 
+import 'dart:async';
 import 'dart:html';
 import 'package:angular/angular.dart';
 
@@ -11,9 +12,16 @@ import 'package:angular/angular.dart';
 class EditableField implements OnInit, OnChanges, AfterViewChecked{
 
   bool isEdit;
+  final _editRequest = new StreamController<String>();
+
+  @Output()
+  Stream<String> get editRequest => _editRequest.stream;
 
   @Input()
   String fieldValue;
+
+  @Input()
+  int propIndex;
 
   @ViewChild('textbox')
   ElementRef textbox;
@@ -31,6 +39,7 @@ class EditableField implements OnInit, OnChanges, AfterViewChecked{
 
   onBlur() {
     isEdit = false;
+
   }
 
   @override
@@ -42,6 +51,7 @@ class EditableField implements OnInit, OnChanges, AfterViewChecked{
 
   @override
   ngOnInit() {
+    // при инициализации поле в нередактируемом состоянии
     isEdit = false;
     // TODO: implement ngOnInit
   }
@@ -52,6 +62,8 @@ class EditableField implements OnInit, OnChanges, AfterViewChecked{
     if(textbox != null){
      /** установка фокуса на input element */
       textbox.nativeElement.focus();
+
+
     }
 
   }

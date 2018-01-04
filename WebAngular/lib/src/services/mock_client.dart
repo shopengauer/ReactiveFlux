@@ -5,7 +5,7 @@ import 'package:WebAngular/src/services/mock_word_set.dart';
 import 'package:angular/angular.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
-import 'package:jsonx/jsonx.dart';
+//import 'package:jsonx/jsonx.dart';
 
 @Injectable()
 class WordMockClient extends MockClient {
@@ -28,7 +28,7 @@ class WordMockClient extends MockClient {
     //return new Response(JSON.encode(mockResponse), 200);
    // return new Response("zopaф", 200);
    // return new Response(JSON.encode("Русский"), 200, headers: {"content-type" : "text/html; charset=utf-8"});
-    return new Response(encode(mockWordSet), 200, headers: {"content-type" : "text/html; charset=utf-8"});
+    return new Response(null, 200, headers: {"content-type" : "text/html; charset=utf-8"});
   //  return new Response("sdsfsd", 200);
 
   }

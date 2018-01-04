@@ -28,6 +28,9 @@ class BookTable implements OnInit, AfterViewChecked {
     isEdit = false;
   }
 
+  editField(String e){
+    print("Edit string $e");
+  }
 
 
   String getIndex(int i) => 'id$i';

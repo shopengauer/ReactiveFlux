@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:WebAngular/src/domain/word.dart';
 import 'package:angular/angular.dart';
 import 'package:http/http.dart';
-import 'package:jsonx/jsonx.dart';
+//import 'package:jsonx/jsonx.dart';
 
 @Injectable()
 class WordHttpService {
@@ -25,7 +25,7 @@ class WordHttpService {
 
   Future<String> getWord(String url) async {
     final response = await _client.get(url);
-    return decode(response.body);
+    return null;//decode(response.body);
 
   }
 

@@ -11,7 +11,7 @@ dependencies:
   angular: ^4.0.0
 
   angular_components: ^0.8.0
-  jsonx: ^2.0.2
+ # jsonx: ^2.0.2
   bootjack: any
 
 dev_dependencies:
@@ -31,6 +31,6 @@ transformers:
 
 # Uncomment the following in sdk 1.24+ to make pub serve
 # use dartdevc (webdev.dartlang.org/tools/dartdevc).
-#web:
-#  compiler:
-#    debug: dartdevc
+web:
+  compiler:
+    debug: dartdevc
