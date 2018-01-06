@@ -26,47 +26,52 @@ class EditableField implements OnInit, OnChanges, AfterViewChecked{
   @ViewChild('textbox')
   ElementRef textbox;
 
-  editText() {
-    isEdit = true;
+
+  int get fieldSize {
+    return fieldValue.length;
   }
 
-  onEnter(KeyboardEvent event, String inputValue) {
-    isEdit = false;
-    print(fieldValue.hashCode);
-    fieldValue = inputValue;
-    _editRequest.add(inputValue);
+    editText() {
+      isEdit = true;
+    }
 
-    print(fieldValue.hashCode);
-  }
+    onEnter(KeyboardEvent event, String inputValue) {
+      isEdit = false;
+      print(fieldValue.hashCode);
+      fieldValue = inputValue;
+      _editRequest.add(inputValue);
 
-  onBlur() {
-    isEdit = false;
+      print(fieldValue.hashCode);
+    }
 
-  }
-
-  @override
-  ngOnChanges(Map<String, SimpleChange> changes) {
-    print('on changes');
-    print(changes);
-    // TODO: implement ngOnChanges
-  }
-
-  @override
-  ngOnInit() {
-    // при инициализации поле в нередактируемом состоянии
-    isEdit = false;
-    // TODO: implement ngOnInit
-  }
-
-
-  @override
-  ngAfterViewChecked() {
-    if(textbox != null){
-     /** установка фокуса на input element */
-      textbox.nativeElement.focus();
-
+    onBlur() {
+      isEdit = false;
 
     }
+
+    @override
+    ngOnChanges(Map<String, SimpleChange> changes) {
+      print('on changes');
+      print(changes);
+      // TODO: implement ngOnChanges
+    }
+
+    @override
+    ngOnInit() {
+      // при инициализации поле в нередактируемом состоянии
+      isEdit = false;
+      // TODO: implement ngOnInit
+    }
+
+
+    @override
+    ngAfterViewChecked() {
+      if(textbox != null){
+        /** установка фокуса на input element */
+        textbox.nativeElement.focus();
+
+
+      }
 
   }
 }

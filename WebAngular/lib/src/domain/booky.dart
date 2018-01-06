@@ -21,14 +21,27 @@ class Booky {
         "description": description
       };
 
-  setProperty(int index, Object value) {
+  setProperty(int index, String value) {
     switch (index) {
       case 0:
         bookName = value;
         break;
       case 1:
-        authors.add(value);
-       break;
+        //authors.add(value);
+        break;
+      case 2:
+        isbn = value;
+        break;
+
+      case 3:
+
+        year = new DateTime(int.parse(value));
+        break;
+
+      case 4:
+        description = value;
+        break;
+
     }
   }
 }
