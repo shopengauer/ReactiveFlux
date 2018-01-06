@@ -31,7 +31,8 @@ class BookTable implements OnInit, AfterViewChecked {
   editField(String value, int row, int prop){
     print("Edit string row: $row prop: $prop");
      bookListCopy[row].setProperty(prop, value);
-     print(bookListCopy[row].bookName);
+     bookList[row].setProperty(prop, value);
+     print(bookList);
   }
 
   @override
