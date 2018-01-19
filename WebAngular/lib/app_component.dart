@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:WebAngular/src/component/editablefield/editable_field.dart';
+import 'package:WebAngular/src/component/main_layout/main_layout.dart';
 import 'package:WebAngular/src/component/table/book_table.dart';
 import 'package:WebAngular/src/component/tablefilter/table_filter.dart';
 import 'package:WebAngular/src/directives/highlight.dart';
@@ -25,7 +26,8 @@ import 'package:bootjack/bootjack.dart';
     Booky,
     BookTable,
     TableFilter,
-    EditableField
+    EditableField,
+    MainLayout
   ],
   providers: const [materialProviders, WordHttpService],
 )
@@ -63,18 +65,18 @@ class AppComponent implements OnInit {
 
   @override
   ngOnInit() async {
-    print(_wordHttpService);
-    wordList = await getWords();
-    print(wordList);
-    print(wordList.elementAt(0));
-    Dropdown.use();
+////    print(_wordHttpService);
+////    wordList = await getWords();
+////    print(wordList);
+////    print(wordList.elementAt(0));
+//    Dropdown.use();
   }
 
-  Future<List<Word>> getWords() async {
-    return await _wordHttpService.getWords('word/book/all-tokens');
-  }
-
-  Future<String> getWord() async {
-    return await _wordHttpService.getWord('word/book/all-tokens');
-  }
+//  Future<List<Word>> getWords() async {
+//    return await _wordHttpService.getWords('word/book/all-tokens');
+//  }
+//
+//  Future<String> getWord() async {
+//    return await _wordHttpService.getWord('word/book/all-tokens');
+//  }
 }
