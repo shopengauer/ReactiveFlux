@@ -30,6 +30,7 @@ public class WebFunctionalConfig implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange serverWebExchange, WebFilterChain webFilterChain) {
         ServerHttpRequest request = serverWebExchange.getRequest();
+        System.out.println(request);
         return request.getURI().getPath().equals("/") ?
                 webFilterChain.filter(serverWebExchange.mutate().request(request.mutate().path("/index.html").build()).build()) :
                 webFilterChain.filter(serverWebExchange);

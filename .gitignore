@@ -24,3 +24,5 @@ nbdist/
 .nb-gradle/
 /mvnw.cmd
 /mvnw
+/.mvn/wrapper/maven-wrapper.jar
+/PdfParserJavaModule/.mvn/wrapper/maven-wrapper.jar

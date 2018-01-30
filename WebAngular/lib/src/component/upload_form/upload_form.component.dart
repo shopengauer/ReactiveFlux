@@ -1,31 +1,42 @@
 import 'dart:html';
+//import 'dart:io';
 
+import 'package:WebAngular/src/services/upload_file_http_service.dart';
 import 'package:angular/angular.dart';
 
 @Component(
   selector: "upload-file",
   templateUrl: "upload_form.html",
+  providers: const [UploadHttpService]
 
 )
 class UploadForm implements OnChanges{
 
+  final UploadHttpService _uploadHttpService;
+
+
+  UploadForm(this._uploadHttpService);
 
   submitForm(files){
    File file = files[0];
-   print('${file.size}');;
-   Blob blob = file.slice();
-   FormData formData = new FormData();
-   formData.appendBlob(file.name, blob);
 
-   print('${blob.size}');
-    print('${files[0].type}');
+    _uploadHttpService.uploadFile(file.name,file.slice());
 
-    print('${files}');
+
+  //     Blob blob = file.slice();
+
+//   FormData formData = new FormData();
+//   formData.appendBlob(file.name, blob);
+//
+//   print('${blob.size}');
+//    print('${files[0].type}');
+//
+//    print('${files}');files
   }
 
 
   onInit(){
-    FormElement v = new FormElement();
+   // FormElement v = new FormElement();
    // v.
   }
 
