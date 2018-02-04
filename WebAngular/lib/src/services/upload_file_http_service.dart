@@ -14,7 +14,7 @@ class UploadHttpService{
 
   //
  // final Client _http;
-  final String _url = "localhost:8080/upload";
+  final String _url = "/upload";
 
 //  UploadHttpService(this._http);
 
@@ -22,13 +22,13 @@ class UploadHttpService{
     Uri uri = new Uri(host: _HOST, port: _PORT);
     HttpRequest httpRequest = new HttpRequest();
 
-   httpRequest.open('POST', uri.toString());
-    httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+   httpRequest.open('POST', _url);
+ //   httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
    
    FormData formData = new FormData()
     ..appendBlob(fileName, blob);
    //httpRequest.response;
-
+    print('${blob.size}');
 
    httpRequest.send(formData);
     //request = new HttpRequestUpl();
