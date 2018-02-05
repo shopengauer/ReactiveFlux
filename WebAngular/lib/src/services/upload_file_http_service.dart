@@ -10,24 +10,17 @@ import 'package:angular/angular.dart';
 class UploadHttpService{
 
   final Map<String,String> headers = {};
-  final _HOST = "127.0.0.1", _PORT = 8080;
-
-  //
- // final Client _http;
   final String _url = "/upload";
 
 //  UploadHttpService(this._http);
 
   Future<List> uploadFile(String fileName, Blob blob) async {
-    Uri uri = new Uri(host: _HOST, port: _PORT);
-    HttpRequest httpRequest = new HttpRequest();
-
-   httpRequest.open('POST', _url);
+       HttpRequest httpRequest = new HttpRequest();
+       httpRequest.open('POST', _url);
  //   httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+      FormData formData = new FormData()
+       ..appendBlob(fileName, blob);
    
-   FormData formData = new FormData()
-    ..appendBlob(fileName, blob);
-   //httpRequest.response;
     print('${blob.size}');
 
    httpRequest.send(formData);
