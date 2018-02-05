@@ -29,7 +29,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 @Configuration
-public class WebFunctionalConfig implements WebFilter, WebFluxConfigurer {
+public class WebFunctionalConfig {
 
     Logger logger = LoggerFactory.getLogger(WebFunctionalConfig.class);
 
@@ -37,14 +37,14 @@ public class WebFunctionalConfig implements WebFilter, WebFluxConfigurer {
  //   private UploadFileSystemService uploadFileSystemService;
 
 
-    @Override
-    public Mono<Void> filter(ServerWebExchange serverWebExchange, WebFilterChain webFilterChain) {
-        ServerHttpRequest request = serverWebExchange.getRequest();
-        System.out.println(request.getRemoteAddress().getAddress().getCanonicalHostName());
-        return request.getURI().getPath().equals("/") ?
-                webFilterChain.filter(serverWebExchange.mutate().request(request.mutate().path("/index.html").build()).build()) :
-                webFilterChain.filter(serverWebExchange);
-    }
+//    @Override
+//    public Mono<Void> filter(ServerWebExchange serverWebExchange, WebFilterChain webFilterChain) {
+//        ServerHttpRequest request = serverWebExchange.getRequest();
+//        System.out.println(request.getRemoteAddress().getAddress().getCanonicalHostName());
+//        return request.getURI().getPath().equals("/") ?
+//                webFilterChain.filter(serverWebExchange.mutate().request(request.mutate().path("/index.html").build()).build()) :
+//                webFilterChain.filter(serverWebExchange);
+//    }
 
     @Bean
     public RouterFunction<ServerResponse> router(UploadFileSystemService uploadFileSystemService) {
@@ -69,9 +69,5 @@ public class WebFunctionalConfig implements WebFilter, WebFluxConfigurer {
 
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/upload")
-                .allowedOrigins("*");
-    }
+
 }

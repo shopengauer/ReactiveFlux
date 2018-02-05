@@ -1,5 +1,6 @@
 package com.webflux.pdfparser.web.webconfigs;
 
+import com.webflux.pdfparser.service.FileService;
 import com.webflux.pdfparser.web.routers.UploadRouters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +11,8 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class WebRouterConfig {
 
   @Bean
-  public UploadRouters baseRouters(){
-      return new UploadRouters();
+  public UploadRouters baseRouters(FileService fileService){
+      return new UploadRouters(fileService);
   }
 
   @Bean
