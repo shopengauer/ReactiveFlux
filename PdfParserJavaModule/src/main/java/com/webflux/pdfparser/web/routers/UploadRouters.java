@@ -48,20 +48,21 @@ public class UploadRouters {
      */
     private Mono<ServerResponse> uploadHandler(ServerRequest serverRequest) {
         Mono<MultiValueMap<String, Part>> mono = serverRequest.body(BodyExtractors.toMultipartData());
-        Mono<ServerResponse> serverResponseMono = ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        List<HttpError> httpErrors = new ArrayList<>();
+    
         mono.flatMap(part -> {
             Map<String, Part> partMap = part.toSingleValueMap();
-           List<HttpError> errors = partMap.entrySet().stream().map((partEntry) -> {
+           List<CreateFileResult> createFileResults = partMap.entrySet().stream().map((partEntry) -> {
                 FilePart filePart = (FilePart) partEntry.getValue();
-                try {
-                    fileService.createEmptyFile(partEntry.getKey());
-
+                String fileName = partEntry.getKey();
+               try {
+                    fileService.createEmptyFile(fileName);
                 } catch (IOException e) {
-                   return new HttpError(HttpStatus.INTERNAL_SERVER_ERROR, "IOError");
+                   return new CreateFileResult(fileName, e.getMessage);
                 }
-                return null;
-            }).collect(Collectors.toList());
+                return new CreateFileResult(fileName);
+            })
+               .filter(result -> Objects.nonNull(result.info))
+               .collect(Collectors.toList());
 
 
 
@@ -71,5 +72,19 @@ public class UploadRouters {
         return ServerResponse.ok().body(BodyInserters.empty());
 
     }
-
+    
+    private static class CreateFileResult{
+        String fileName;
+        String info;
+        
+        CreateFileResult(String fileName){
+            this.fileName = fileName;
+        }
+        
+        CreateFileResult(String fileName, String info){
+             this.fileName = fileName;
+             this.info = info;
+        }
+        
+    }
 }
