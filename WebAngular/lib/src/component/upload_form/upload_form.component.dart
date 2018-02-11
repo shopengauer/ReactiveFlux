@@ -7,12 +7,12 @@ import 'package:angular/angular.dart';
 @Component(
   selector: "upload-file",
   templateUrl: "upload_form.html",
-  providers: const [UploadHttpService]
+  providers: const [UploadFileHttpService]
 
 )
 class UploadForm implements OnChanges{
 
-  final UploadHttpService _uploadHttpService;
+  final UploadFileHttpService _uploadHttpService;
 
 
   UploadForm(this._uploadHttpService);

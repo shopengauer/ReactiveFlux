@@ -7,7 +7,7 @@ import 'package:angular/angular.dart';
 //import 'package:http/http.dart';
 
 @Injectable()
-class UploadHttpService{
+class UploadFileHttpService{
 
   final Map<String,String> headers = {};
   final String _url = "/upload";
@@ -24,7 +24,8 @@ class UploadHttpService{
     print('${blob.size}');
 
    httpRequest.send(formData);
-    //request = new HttpRequestUpl();
+
+   //request = new HttpRequestUpl();
 
 
   //  var url = Uri.parse(_url);
