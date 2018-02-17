@@ -5,24 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.http.codec.multipart.Part;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyExtractors;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.*;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Configuration
@@ -32,17 +30,20 @@ public class UploadRouters {
     private String uploadPath;
 
     private FileService fileService;
+    private final UploadHandlers uploadHandlers;
 
     @Autowired
-    public UploadRouters(FileService fileService) {
+    public UploadRouters(FileService fileService, UploadHandlers uploadHandlers) {
         this.fileService = fileService;
+        this.uploadHandlers = uploadHandlers;
     }
 
     /**
      * @return
      */
     @Bean
-    public RouterFunction<ServerResponse> uploadRouterFunction() {
+    @Profile("lambda")
+    public RouterFunction<ServerResponse> uploadLambdaRouterFunction() {
         return RouterFunctions.route(RequestPredicates.POST("/upload"), serverRequest -> serverRequest.body(BodyExtractors.toMultipartData())
                 .flatMap(parts -> {
             Map<String, Part> partMap = parts.toSingleValueMap();
@@ -50,12 +51,11 @@ public class UploadRouters {
                 FilePart filePart = (FilePart) partEntry.getValue();
                 String fileName = partEntry.getKey();
                 try {
-                    Files.createFile(Paths.get(fileName));
-                    filePart.transferTo(new File(fileName));
+                    Path path = fileService.filePathResolver(fileName);
+                    Files.createFile(path);
+                    filePart.transferTo(new File(path.toString()));
                 } catch (IOException e) {
-                    e.printStackTrace();
                     return new CreateFileResult(fileName, e.toString());
-
                 }
                 return new CreateFileResult(fileName);
             }).collect(Collectors.toList());
@@ -64,32 +64,11 @@ public class UploadRouters {
                 .and(RouterFunctions.resources("/**", new ClassPathResource("static/web/")));
     }
 
-    /**
-     * @param serverRequest
-     * @return
-     */
-    // @Bean
-    public Mono<ServerResponse> uploadHandler(ServerRequest serverRequest) {
-        serverRequest.body(BodyExtractors.toMultipartData())
-                .flatMap(part -> {
-                    Map<String, Part> partMap = part.toSingleValueMap();
-                    partMap.entrySet().stream().map((partEntry) -> {
-                        FilePart filePart = (FilePart) partEntry.getValue();
-                        String fileName = partEntry.getKey();
-                        try {
-                            fileService.createEmptyFile(fileName);
-                            filePart.transferTo(new File(fileName));
-                        } catch (IOException e) {
-                            return new CreateFileResult(fileName, e.getMessage());
-                        }
-                        return new CreateFileResult(fileName);
-                    });
-                    return ServerResponse.ok().body(BodyInserters.fromObject(""));
-
-                });
-
-        return ServerResponse.ok().body(BodyInserters.fromObject(""));
-
+    @Bean
+    @Profile("ref")
+    public RouterFunction<ServerResponse> uploadRefRouterFunction() {
+        return RouterFunctions.route(RequestPredicates.POST("/upload"), uploadHandlers::uploadHandler
+        ).and(RouterFunctions.resources("/**", new ClassPathResource("static/web/")));
     }
 
 
