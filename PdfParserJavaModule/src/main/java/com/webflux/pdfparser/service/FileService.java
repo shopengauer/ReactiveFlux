@@ -14,15 +14,27 @@ public class FileService {
 
     Logger logger = LoggerFactory.getLogger(FileService.class);
 
-    @Value("${test.filepath}")
-    String testFilePath;
+    @Value("${filepath.base}")
+    String baseFilePath;
 
-    public Path createEmptyFile(String fileName) throws IOException {
-        return Files.createFile(Paths.get(fileName));
+    public Path baseCreateEmptyFile(String fileName) throws IOException {
+        return Files.createFile(baseFilePathResolver(fileName));
     }
 
-    public Path filePathResolver(String fileName){
-        return Paths.get(testFilePath + fileName);
+    public Path createEmptyFile(String filePath,String fileName) throws IOException {
+        return Files.createFile(filePathResolver(filePath, fileName));
+    }
+
+    public void baseDeleteFile(String fileName) throws IOException {
+         Files.delete(baseFilePathResolver(fileName));
+    }
+
+    public Path baseFilePathResolver(String fileName){
+        return filePathResolver(baseFilePath,fileName);
+    }
+
+    public Path filePathResolver(String filePath, String fileName){
+        return Paths.get(filePath + fileName);
     }
 
 }

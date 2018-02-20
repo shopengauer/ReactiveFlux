@@ -1,7 +1,7 @@
 package com.webflux.pdfparser;
 
 import com.webflux.pdfparser.service.FileService;
-import org.assertj.core.util.Files;
+//import org.assertj.core.util.Files;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,14 +17,11 @@ import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
-import java.io.File;
+
+import java.nio.file.Path;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,10 +29,15 @@ public class WebClientUploadTests {
 
     @Value(value = "${web.address}")
     private String serverAddress;
+
     @Value("${web.props.uploadpath}")
     private String uploadPath;
-    @Value("${test.tesfilename}")
+
+    @Value("${filename.test}")
     private String testFilename;
+
+    @Value("${filepath.test}")
+    private String testFilepath;
 
     private WebClient webClient;
     @Autowired
@@ -44,7 +46,7 @@ public class WebClientUploadTests {
     @Before
     public void setUp() throws Exception {
         webClient = WebClient.create(serverAddress);
-        Files.delete(new File(fileService.filePathResolver(testFilename).toString()));
+        fileService.baseDeleteFile(testFilename);
     }
 
     @Test
@@ -54,12 +56,12 @@ public class WebClientUploadTests {
     }
 
     @Test
-    public void uploadFileTest() {
+    public void uploadFileTest() throws Exception {
 
-        File file = new File(fileService.filePathResolver(testFilename).toString());
+       Path path = fileService.createEmptyFile(testFilepath, testFilename);
 
         MultipartBodyBuilder multipartBodyBuilder = new MultipartBodyBuilder();
-        multipartBodyBuilder.part(testFilename, new FileSystemResource(file));
+        multipartBodyBuilder.part(testFilename, new FileSystemResource(path.toFile()));
         MultiValueMap<String, HttpEntity<?>> multiValueMap = multipartBodyBuilder.build();
 
 

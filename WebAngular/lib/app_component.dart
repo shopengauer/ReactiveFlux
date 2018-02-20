@@ -10,7 +10,7 @@ import 'package:WebAngular/src/domain/word.dart';
 import 'package:WebAngular/src/services/mock_client.dart';
 import 'package:WebAngular/src/services/word_http_service.dart';
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart';
+//import 'package:angular_components/angular_components.dart';
 import 'package:bootjack/bootjack.dart';
 // AngularDart info: https://webdev.dartlang.org/angular
 // Components info: https://webdev.dartlang.org/components
@@ -20,7 +20,7 @@ import 'package:bootjack/bootjack.dart';
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
   directives: const [
-    materialDirectives,
+   // materialDirectives,
     HighlightDirective,
     CORE_DIRECTIVES,
     Booky,
@@ -29,7 +29,7 @@ import 'package:bootjack/bootjack.dart';
     EditableField,
     MainLayout
   ],
-  providers: const [materialProviders, WordHttpService],
+  providers: const [/*materialProviders,*/ WordHttpService],
 )
 class AppComponent implements OnInit {
 

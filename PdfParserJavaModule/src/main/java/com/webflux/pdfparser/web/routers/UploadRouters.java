@@ -12,13 +12,10 @@ import org.springframework.http.codec.multipart.Part;
 import org.springframework.web.reactive.function.BodyExtractors;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.*;
-import reactor.core.publisher.Mono;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,8 +48,7 @@ public class UploadRouters {
                 FilePart filePart = (FilePart) partEntry.getValue();
                 String fileName = partEntry.getKey();
                 try {
-                    Path path = fileService.filePathResolver(fileName);
-                    Files.createFile(path);
+                    Path path = fileService.baseCreateEmptyFile(fileName);
                     filePart.transferTo(new File(path.toString()));
                 } catch (IOException e) {
                     return new CreateFileResult(fileName, e.toString());

@@ -11,12 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 
@@ -35,12 +33,12 @@ public class FileServiceTest {
 
     @Before
     public void setUp() {
-        Files.delete(fileService.filePathResolver(testFilename).toFile());
+        Files.delete(fileService.baseFilePathResolver(testFilename).toFile());
     }
 
     @Test
     public void createAndDeleteTestFile() {
-        Path testFilePath = fileService.filePathResolver(testFilename);
+        Path testFilePath = fileService.baseFilePathResolver(testFilename);
         File file = Files.newFile(testFilePath.toString());
         FileSystemResource resource = new FileSystemResource(file);
         Assert.assertTrue(resource.isFile());
