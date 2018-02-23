@@ -19,7 +19,7 @@ class UploadForm implements OnChanges{
 
   void submitForm(files){
      File file = files[0];
-     var fileReader = new FileReader();
+     FileReader fileReader = new FileReader();
      fileReader.readAsArrayBuffer(file.slice());
      //fileReader.onLoad = load;
     _uploadHttpService.uploadFile(file.name,file.slice());

@@ -13,7 +13,7 @@ class WordHttpService {
   WordHttpService(this._client);
 
   Future<List<Word>> getWords(String url) async {
-    final response = await _client.get(url);
+    Response response = await _client.get(url);
   //  print(response.body);
     List<Map<String,dynamic>> list = JSON.decode(response.body);
     print(list.map(mapFunction));

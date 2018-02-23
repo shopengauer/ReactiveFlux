@@ -12,7 +12,7 @@ import 'package:angular/angular.dart';
 class EditableField implements OnInit, OnChanges, AfterViewChecked{
 
   bool isEdit;
-  final _editRequest = new StreamController<String>();
+  final StreamController<String> _editRequest = new StreamController<String>();
 
   @Output()
   Stream<String> get editRequest => _editRequest.stream;

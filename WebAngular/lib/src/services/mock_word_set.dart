@@ -1,19 +1,19 @@
 import 'package:WebAngular/src/domain/word.dart';
 
 
-var mockWordSet = [
+List mockWordSet = [
   new Word.createWordWithTranslates("pencil", english, ['карандаш','кагадаш']),
   new Word.createWordWithTranslates("pen", english, ['ручка']),
   new Word.createWordWithTranslates("hello", english, ['привет'])
 ];
 
-var mockWordSetJson = [
+List mockWordSetJson = [
   {"token":"pencil","language":0,"translates":["ashdjshdjsh"]},{"token":"pen","language":0,"translates":["жопа"]},{"token":"hello","language":0,"translates":[""]}
 ];
 
 
 
-var mockResponse = {
+Map<String, Map<String, int>> mockResponse = {
   "list": {
     "FOREWORD": 1,
     "actionlicensed": 1,

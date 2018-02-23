@@ -14,7 +14,7 @@ class TableFilter{
   BookTable bookTable;
 
 
-  filterTable(String value){
+  void filterTable(String value){
     bookTable.bookListCopy = new List<Booky>.from(bookTable.bookList);
     bookTable.bookListCopy.retainWhere((book) => inputValueTest(book ,value));
 
