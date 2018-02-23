@@ -5,27 +5,22 @@ import 'package:WebAngular/src/services/upload_file_http_service.dart';
 import 'package:angular/angular.dart';
 
 @Component(
-  selector: "upload-file",
-  templateUrl: "upload_form.html",
-  providers: const [UploadFileHttpService]
-
-)
-class UploadForm implements OnChanges{
-
+    selector: "upload-file",
+    templateUrl: "upload_form.html",
+    providers: const [UploadFileHttpService])
+class UploadForm implements OnChanges {
   final UploadFileHttpService _uploadHttpService;
-
 
   UploadForm(this._uploadHttpService);
 
-  void submitForm(files){
-     File file = files[0];
-     FileReader fileReader = new FileReader();
-     fileReader.readAsArrayBuffer(file.slice());
-     //fileReader.onLoad = load;
-    _uploadHttpService.uploadFile(file.name,file.slice());
+  void submitForm(FileList files) {
+    Map<String,File> file = {files[0].name : files[0].slice()};
+    FileReader fileReader = new FileReader();
+ //   fileReader.readAsArrayBuffer(file.slice());
+    //fileReader.onLoad = load;
+    _uploadHttpService.uploadFile(file);
 
-
-  //     Blob blob = file.slice();
+    //     Blob blob = file.slice();
 
 //   FormData formData = new FormData();
 //   formData.appendBlob(file.name, blob);
@@ -36,15 +31,11 @@ class UploadForm implements OnChanges{
 //    print('${files}');files
   }
 
-
-  onInit(){
-   // FormElement v = new FormElement();
-   // v.
+  onInit() {
+    // FormElement v = new FormElement();
+    // v.
   }
 
   @override
-  ngOnChanges(Map<String, SimpleChange> changes) {
-
-  }
-
+  ngOnChanges(Map<String, SimpleChange> changes) {}
 }
