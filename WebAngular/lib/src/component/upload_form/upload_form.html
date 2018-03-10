@@ -1,11 +1,12 @@
-
+<!--(change)="inputClick()"-->
 
 <p>XHR upload form</p>
-<input #file type="file" multiple = "true"/>
-<button (click) = "submitXhrForm(file.files)" value="Upload">Upload</button>
 
-<!--
-<p>HTTP upload form</p>
-<input #fileHttp type="file" multiple = "true" name="up"/>
-<button (click) = "submitHttpForm(fileHttp.files)" value="Upload">Upload</button>
--->
+
+
+<input #file type="file" multiple = "true" (change)="setFilesName(file.files)"/>
+<button (click) = "submitXhrForm(file.files)" value="Upload">Upload</button>
+<button (click) = "file.value='';fileNames.clear();" value="Clear">Clear</button>
+
+
+<li *ngFor="let f of fileNames">{{f}}</li>

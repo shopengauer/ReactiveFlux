@@ -41,6 +41,7 @@ public class UploadRouters {
     @Bean
     @Profile("lambda")
     public RouterFunction<ServerResponse> uploadLambdaRouterFunction() {
+        long first = System.currentTimeMillis();
         return RouterFunctions.route(RequestPredicates.POST("/upload"), serverRequest -> serverRequest.body(BodyExtractors.toMultipartData())
                 .flatMap(parts -> {
             Map<String, Part> partMap = parts.toSingleValueMap();
@@ -55,6 +56,7 @@ public class UploadRouters {
                 }
                 return new CreateFileResult(fileName);
             }).collect(Collectors.toList());
+            System.out.println(System.currentTimeMillis() - first);
             return ServerResponse.ok().body(BodyInserters.fromObject(fileResults));
         }))
                 .and(RouterFunctions.resources("/**", new ClassPathResource("static/web/")));

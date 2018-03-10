@@ -5,10 +5,15 @@ import 'package:angular/angular.dart';
 @Component(
     selector: "upload-file",
     templateUrl: "upload_form.html",
+    directives: const [CORE_DIRECTIVES],
     providers: const [UploadFileXhrService])
-class UploadForm {
+class UploadForm implements OnChanges, AfterViewChecked, AfterViewInit, AfterContentChecked{
 
+  /** Ajax service for files upload */
   final UploadFileXhrService _uploadXhrService;
+
+  /** */
+  final List<String> fileNames = [];
 
   UploadForm(this._uploadXhrService);
 
@@ -21,18 +26,38 @@ class UploadForm {
     _uploadXhrService.uploadFile(domainFiles);
   }
 
- /**
-   * Загрузка списка файлов посредством библиотеке http.
-   * Скорее всего эту библтотеку нельзя использовать на клиентской стороне
-   * только на сервере because MultiPartFile have import dart.io!!!
-   */
+  void setFilesName(FileList filesFromHtml){
+    fileNames.clear();
+    filesFromHtml.forEach((f) => fileNames.add(f.name));
+    print('Input click');
+  }
 
-  /*@deprecated
-  void submitHttpForm(FileList filesFromHtml){
-    List<DomainFile> domainFiles = filesFromHtml.map((File file) => new DomainFile(file)).toList();
-    _uploadFileHttpService.uploadFiles(domainFiles);
-  }*/
+  void clearFiles(FileList filesFromHtml){
+     filesFromHtml=null;
+  }
 
+
+
+  @override
+  ngOnChanges(Map<String, SimpleChange> changes) {
+    print('onChange');
+    // TODO: implement ngOnChanges
+  }
+  @override
+  ngAfterViewChecked() {
+    print('afterViewChecked');
+    // TODO: implement ngAfterViewChecked
+  }
+  @override
+  ngAfterViewInit() {
+    print('ngAfterViewInit');
+    // TODO: implement ngAfterViewInit
+  }
+  @override
+  ngAfterContentChecked() {
+    print('ngAfterContentChecked');
+    // TODO: implement ngAfterContentChecked
+  }
 }
 
 class DomainFile{
