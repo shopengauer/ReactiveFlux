@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 
 
 @Injectable()
-class UploadFileHttpService {
+class UploadFileXhrService {
   final Map<String, String> headers = {};
   final String _url = "/upload";
 
@@ -15,7 +15,9 @@ class UploadFileHttpService {
     //   httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
     FormData formData = new FormData();
     domainFiles.forEach((file) => formData.appendBlob(file.name, file.blob));
+  //  httpRequest.onReadyStateChange.listen(onData) =
     httpRequest.send(formData);
+
     return null;
   }
 }

@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
-
-import 'package:WebAngular/src/services/mock_word_set.dart';
 import 'package:angular/angular.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
-//import 'package:jsonx/jsonx.dart';
 
 @Injectable()
 class WordMockClient extends MockClient {

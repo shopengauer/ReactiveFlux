@@ -1,21 +1,20 @@
 name: WebAngular
 description: A web app that uses AngularDart Components
 version: 0.0.1
-#homepage: https://www.example.com
-#author: vasilij <email@example.com>
+homepage: https://www.example.com
+author: vasilij <email@example.com>
 
 environment:
   sdk: ^1.24.3
 
 dependencies:
   angular: ^4.0.0
-
-#  angular_components: ^0.8.0
- # jsonx: ^2.0.2
+  http: ^0.11.3+16
   bootjack: any
 
 dev_dependencies:
   angular_test: ^1.0.0
+  analyzer: '<=0.31.1'  # часто зачок ^ не срабатывает и нужно ставить <=
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1
   test: ^0.12.0
