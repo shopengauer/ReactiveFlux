@@ -1,0 +1,14 @@
+web:
+ props:
+  uploadurl: "/upload"
+  hostaddress: "http://localhost:8080"
+upload:
+  filepath:
+        base: "/Users/vasilij/wordis/uploadfiles/"
+        test: "/Users/vasilij/wordis/forupload/"
+  filename:
+        test: "testfile.xml"
+  url: "/upload"
+spring:
+    profiles:
+         active: "lambda"

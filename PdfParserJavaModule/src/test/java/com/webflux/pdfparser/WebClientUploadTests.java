@@ -1,11 +1,13 @@
 package com.webflux.pdfparser;
 
 import com.webflux.pdfparser.service.FileService;
-//import org.assertj.core.util.Files;
+import com.webflux.pdfparser.web.client.HttpFileUploadClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,53 +21,72 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-
+import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+//import org.assertj.core.util.Files;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class WebClientUploadTests {
 
-    @Value(value = "${web.address}")
-    private String serverAddress;
+    private static Logger LOG = LoggerFactory.getLogger(WebClientUploadTests.class);
 
-    @Value("${web.props.uploadpath}")
-    private String uploadPath;
+    @Value(value = "${web.props.hostaddress}")
+    private String hostAddress;
 
-    @Value("${filename.test}")
+    @Value("${upload.url}")
+    private String uploadUrl;
+
+    @Value("${upload.filename.test}")
     private String testFilename;
 
-    @Value("${filepath.test}")
+    private List<String> testFilenamesForUpload = Arrays.asList("testfile1.xml"
+            ,"testfile2.xml", "testfile3.xml", "testfile4.xml");
+
+    @Value("${upload.filepath.test}")
     private String testFilepath;
 
     private WebClient webClient;
+
     @Autowired
     private FileService fileService;
 
+    @Autowired
+    private HttpFileUploadClient httpFileUploadClient;
+
+
     @Before
     public void setUp() throws Exception {
-        webClient = WebClient.create(serverAddress);
-        fileService.baseDeleteFile(testFilename);
+        webClient = WebClient.create(hostAddress);
+        fileService.deleteFileInBasePath(testFilename);
     }
 
     @Test
     public void propertiesVerify() {
-        Assert.assertNotNull(serverAddress);
-        Assert.assertNotNull(uploadPath);
+        Assert.assertNotNull(hostAddress);
+        Assert.assertNotNull(uploadUrl);
+        Assert.assertNotNull(testFilenamesForUpload);
     }
 
     @Test
     public void uploadFileTest() throws Exception {
 
-       Path path = fileService.createEmptyFile(testFilepath, testFilename);
+
+
+        Path path = fileService.createEmptyFile(testFilepath, testFilename);
 
         MultipartBodyBuilder multipartBodyBuilder = new MultipartBodyBuilder();
-        multipartBodyBuilder.part(testFilename, new FileSystemResource(path.toFile()));
+        multipartBodyBuilder.part(path.getFileName().toString(), new FileSystemResource(path.toFile()));
         MultiValueMap<String, HttpEntity<?>> multiValueMap = multipartBodyBuilder.build();
 
 
-       ResponseEntity<List> entity = webClient.post().uri(uploadPath).accept(MediaType.APPLICATION_JSON)
+        ResponseEntity<List> entity = webClient.post().uri(uploadUrl).accept(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromMultipartData(multiValueMap)).exchange()
                 .flatMap(clientResponse -> {
                     System.out.println(clientResponse.toEntity(List.class));
@@ -73,6 +94,25 @@ public class WebClientUploadTests {
                 }).block();
 
         System.out.println(entity.getBody());
+
+    }
+
+    @Test
+    public void httpClientFileUploadTest() throws IOException {
+
+        List<Path> paths = new ArrayList<>();
+        for (String fileName : testFilenamesForUpload) {
+            try {
+                paths.add(fileService.createEmptyFile(testFilepath, fileName));
+            } catch (IOException e) {
+                LOG.error("Error creating file: {}", e.getMessage());
+            }
+        }
+
+     ResponseEntity<List> response =
+             httpFileUploadClient.sendFilesToServer(paths,hostAddress,uploadUrl);
+
+     assert response!=null;
 
     }
 }

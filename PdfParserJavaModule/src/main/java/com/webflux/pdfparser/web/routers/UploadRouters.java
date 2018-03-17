@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Configuration
 public class UploadRouters {
 
-    @Value("${web.props.uploadpath}")
+    @Value("${upload.url}")
     private String uploadPath;
 
     private FileService fileService;
@@ -42,14 +42,14 @@ public class UploadRouters {
     @Profile("lambda")
     public RouterFunction<ServerResponse> uploadLambdaRouterFunction() {
         long first = System.currentTimeMillis();
-        return RouterFunctions.route(RequestPredicates.POST("/upload"), serverRequest -> serverRequest.body(BodyExtractors.toMultipartData())
+        return RouterFunctions.route(RequestPredicates.POST(uploadPath), serverRequest -> serverRequest.body(BodyExtractors.toMultipartData())
                 .flatMap(parts -> {
             Map<String, Part> partMap = parts.toSingleValueMap();
             List<CreateFileResult> fileResults = partMap.entrySet().stream().map(partEntry -> {
                 FilePart filePart = (FilePart) partEntry.getValue();
                 String fileName = partEntry.getKey();
                 try {
-                    Path path = fileService.baseCreateEmptyFile(fileName);
+                    Path path = fileService.createEmptyFileInBasePath(fileName);
                     filePart.transferTo(new File(path.toString()));
                 } catch (IOException e) {
                     return new CreateFileResult(fileName, e.toString());
