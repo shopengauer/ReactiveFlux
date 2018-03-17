@@ -111,11 +111,23 @@ public class FileService {
      * @param filePath - директория для очистки
      */
     public void deleteAllFilesInPath(String filePath) throws IOException {
-        Iterator<Path> filesForDelete = Files.newDirectoryStream(Paths.get(filePath)).iterator();
+        Iterator<Path> filesForDelete = getAllFilesFromPath(filePath);
         while(filesForDelete.hasNext()){
             Path path = filesForDelete.next();
             Files.deleteIfExists(path);
         }
+    }
+
+    public Iterator<Path> getAllFilesFromPath(String filePath) throws IOException {
+        return Files.newDirectoryStream(Paths.get(filePath)).iterator();
+    }
+
+    public boolean isFilePathEmpty(String filePath) throws IOException {
+        return !Files.newDirectoryStream(Paths.get(filePath)).iterator().hasNext();
+    }
+
+    public boolean isBaseFilePathEmpty() throws IOException {
+        return !Files.newDirectoryStream(Paths.get(baseFilePath)).iterator().hasNext();
     }
 
     /**
