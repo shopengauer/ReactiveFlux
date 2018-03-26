@@ -1,6 +1,5 @@
 package com.webflux.pdfparser;
 
-import com.webflux.pdfparser.service.FileService;
 import com.webflux.pdfparser.web.client.HttpFileUploadClient;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,11 +22,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 //import org.assertj.core.util.Files;
 
@@ -54,8 +51,7 @@ public class WebClientUploadTests {
 
     private WebClient webClient;
 
-    @Autowired
-    private FileService fileService;
+
 
     @Autowired
     private HttpFileUploadClient httpFileUploadClient;
@@ -64,7 +60,7 @@ public class WebClientUploadTests {
     @Before
     public void setUp() throws Exception {
         webClient = WebClient.create(hostAddress);
-        fileService.deleteFileInBasePath(testFilename);
+
     }
 
     @Test
@@ -79,40 +75,40 @@ public class WebClientUploadTests {
 
 
 
-        Path path = fileService.createEmptyFile(testFilepath, testFilename);
+     //   Path path = fileService.createEmptyFile(testFilepath, testFilename);
 
-        MultipartBodyBuilder multipartBodyBuilder = new MultipartBodyBuilder();
-        multipartBodyBuilder.part(path.getFileName().toString(), new FileSystemResource(path.toFile()));
-        MultiValueMap<String, HttpEntity<?>> multiValueMap = multipartBodyBuilder.build();
-
-
-        ResponseEntity<List> entity = webClient.post().uri(uploadUrl).accept(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromMultipartData(multiValueMap)).exchange()
-                .flatMap(clientResponse -> {
-                    System.out.println(clientResponse.toEntity(List.class));
-                    return clientResponse.toEntity(List.class);
-                }).block();
-
-        System.out.println(entity.getBody());
+//        MultipartBodyBuilder multipartBodyBuilder = new MultipartBodyBuilder();
+//        multipartBodyBuilder.part(path.getFileName().toString(), new FileSystemResource(path.toFile()));
+//        MultiValueMap<String, HttpEntity<?>> multiValueMap = multipartBodyBuilder.build();
+//
+//
+//        ResponseEntity<List> entity = webClient.post().uri(uploadUrl).accept(MediaType.APPLICATION_JSON)
+//                .body(BodyInserters.fromMultipartData(multiValueMap)).exchange()
+//                .flatMap(clientResponse -> {
+//                    System.out.println(clientResponse.toEntity(List.class));
+//                    return clientResponse.toEntity(List.class);
+//                }).block();
+//
+//        System.out.println(entity.getBody());
 
     }
 
     @Test
     public void httpClientFileUploadTest() throws IOException {
 
-        List<Path> paths = new ArrayList<>();
-        for (String fileName : testFilenamesForUpload) {
-            try {
-                paths.add(fileService.createEmptyFile(testFilepath, fileName));
-            } catch (IOException e) {
-                LOG.error("Error creating file: {}", e.getMessage());
-            }
-        }
+//        List<Path> paths = new ArrayList<>();
+//        for (String fileName : testFilenamesForUpload) {
+//            try {
+//                paths.add(fileService.createEmptyFile(testFilepath, fileName));
+//            } catch (IOException e) {
+//                LOG.error("Error creating file: {}", e.getMessage());
+//            }
+//        }
 
-     ResponseEntity<List> response =
-             httpFileUploadClient.sendFilesToServer(paths,hostAddress,uploadUrl);
+//     ResponseEntity<List> response =
+//             httpFileUploadClient.sendFilesToServer(paths,hostAddress,uploadUrl);
 
-     assert response!=null;
+  //   assert response!=null;
 
     }
 }

@@ -1,6 +1,6 @@
 package com.webflux.pdfparser.web.routers;
 
-import com.webflux.pdfparser.service.FileService;
+import com.webflux.pdfparser.service.IOFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,11 +26,14 @@ public class UploadRouters {
     @Value("${upload.url}")
     private String uploadPath;
 
-    private FileService fileService;
+    @Value("${upload.filepath.base}")
+     private String childPath;
+
+    private IOFileService fileService;
     private final UploadHandlers uploadHandlers;
 
     @Autowired
-    public UploadRouters(FileService fileService, UploadHandlers uploadHandlers) {
+    public UploadRouters(IOFileService fileService, UploadHandlers uploadHandlers) {
         this.fileService = fileService;
         this.uploadHandlers = uploadHandlers;
     }
@@ -49,8 +52,8 @@ public class UploadRouters {
                 FilePart filePart = (FilePart) partEntry.getValue();
                 String fileName = partEntry.getKey();
                 try {
-                    Path path = fileService.createEmptyFileInBasePath(fileName);
-                    filePart.transferTo(new File(path.toString()));
+                    File file = fileService.createEmptyFileInBaseDir(childPath,fileName);
+                    filePart.transferTo(file);
                 } catch (IOException e) {
                     return new CreateFileResult(fileName, e.toString());
                 }

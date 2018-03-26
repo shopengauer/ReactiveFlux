@@ -4,8 +4,8 @@ web:
   hostaddress: "http://localhost:8080"
 upload:
   filepath:
-        base: "/Users/vasilij/wordis/uploadfiles/"
-        test: "/Users/vasilij/wordis/forupload/"
+        base: "/wordis/uploadfiles/"
+        test: "/wordis/forupload/"
   filename:
         test: "testfile.xml"
   url: "/upload"

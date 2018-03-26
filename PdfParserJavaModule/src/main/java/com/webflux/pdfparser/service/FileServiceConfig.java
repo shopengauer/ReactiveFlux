@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 public class FileServiceConfig {
 
     @Bean
-    public FileService fileService(){
-        return new FileService();
+    public IOFileService ioFileService(){
+        return new IOFileService();
     }
 
 
