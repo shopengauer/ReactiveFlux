@@ -28,16 +28,16 @@ class BookTable implements OnInit, AfterViewChecked {
     isEdit = false;
   }
 
-  editField(String value, int row, int prop){
+  editField(String value, int row, int prop) {
     print("Edit string row: $row prop: $prop");
-     bookListCopy[row].setProperty(prop, value);
-     bookList[row].setProperty(prop, value);
-     print(bookList);
+    bookListCopy[row].setProperty(prop, value);
+    bookList[row].setProperty(prop, value);
+    print(bookList);
   }
 
   @override
   ngAfterViewChecked() {
-  //  print(bookListCopy);
+    //  print(bookListCopy);
     // TODO: implement ngAfterViewChecked
   }
 }

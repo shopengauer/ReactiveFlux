@@ -30,23 +30,23 @@ public class IOFileServiceTest {
 
     @Test
     public void createBaseUploadFilePath() throws IOException {
-       ioFileService.createBaseDir(baseFilePath);
-       ioFileService.createBaseDir(testFilePath);
+        ioFileService.createBaseDir(baseFilePath);
+        ioFileService.createBaseDir(testFilePath);
 
-       ioFileService.createEmptyFileInBaseDir(testFilePath,"test1");
-        ioFileService.createEmptyFilesInBaseDir(testFilePath, Arrays.asList("test2","test3"));
-         ioFileService.deleteAllFilesInBaseDir(testFilePath);
-         ioFileService.deleteBaseDir(testFilePath);
+        ioFileService.createEmptyFileInBaseDir(testFilePath, "test1");
+        ioFileService.createEmptyFilesInBaseDir(testFilePath, Arrays.asList("test2", "test3"));
+        ioFileService.deleteAllFilesInBaseDir(testFilePath);
+        ioFileService.deleteBaseDir(testFilePath);
 
-     //   boolean isBaseDirCreated = ioFileService.createBaseDir(baseFilePath);
-     // Assert.assertTrue("/Users/vasilij/wordis/uploadfiles",file.getPath());
+        //   boolean isBaseDirCreated = ioFileService.createBaseDir(baseFilePath);
+        // Assert.assertTrue("/Users/vasilij/wordis/uploadfiles",file.getPath());
     }
 
     @Test
     public void createEmptyFileTest() throws IOException {
 
 
-      //  File path = ioFileService.getBaseFilesPath(baseFilePath);
-      //   ioFileService.createEmptyFileInBaseDir(baseFilePath, "fertu");
+        //  File path = ioFileService.getBaseFilesPath(baseFilePath);
+        //   ioFileService.createEmptyFileInBaseDir(baseFilePath, "fertu");
     }
 }

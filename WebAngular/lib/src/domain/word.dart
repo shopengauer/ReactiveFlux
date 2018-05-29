@@ -1,17 +1,13 @@
-
-
 /**
  *   Класс представляючий слово на определенном языке
  *   с перечнем переводов
  */
 
 class Word {
-
   String token;
   Language language;
   String lang;
   List<String> translates;
-
 
   Word();
 
@@ -23,18 +19,9 @@ class Word {
   String toString() {
     return 'Word{token: $token, language: $lang, translates: $translates}';
   }
-
-
-
-
 }
 
-enum Language {
-
-
-  ENGLISH,
-  RUSSIAN
-}
+enum Language { ENGLISH, RUSSIAN }
 
 const String english = 'English';
 const String russian = 'Russian';

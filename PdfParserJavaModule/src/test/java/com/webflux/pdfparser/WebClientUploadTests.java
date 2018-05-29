@@ -44,13 +44,12 @@ public class WebClientUploadTests {
     private String testFilename;
 
     private List<String> testFilenamesForUpload = Arrays.asList("testfile1.xml"
-            ,"testfile2.xml", "testfile3.xml", "testfile4.xml");
+            , "testfile2.xml", "testfile3.xml", "testfile4.xml");
 
     @Value("${upload.filepath.test}")
     private String testFilepath;
 
     private WebClient webClient;
-
 
 
     @Autowired
@@ -74,8 +73,7 @@ public class WebClientUploadTests {
     public void uploadFileTest() throws Exception {
 
 
-
-     //   Path path = fileService.createEmptyFile(testFilepath, testFilename);
+        //   Path path = fileService.createEmptyFile(testFilepath, testFilename);
 
 //        MultipartBodyBuilder multipartBodyBuilder = new MultipartBodyBuilder();
 //        multipartBodyBuilder.part(path.getFileName().toString(), new FileSystemResource(path.toFile()));
@@ -108,7 +106,7 @@ public class WebClientUploadTests {
 //     ResponseEntity<List> response =
 //             httpFileUploadClient.sendFilesToServer(paths,hostAddress,uploadUrl);
 
-  //   assert response!=null;
+        //   assert response!=null;
 
     }
 }

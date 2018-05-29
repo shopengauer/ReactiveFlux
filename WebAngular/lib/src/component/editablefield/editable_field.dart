@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:html';
 import 'package:angular/angular.dart';
@@ -7,10 +6,8 @@ import 'package:angular/angular.dart';
   selector: "ed-field",
   templateUrl: "editable_field.html",
   directives: const [CORE_DIRECTIVES],
-
 )
-class EditableField implements OnInit, OnChanges, AfterViewChecked{
-
+class EditableField implements OnInit, OnChanges, AfterViewChecked {
   bool isEdit;
   final StreamController<String> _editRequest = new StreamController<String>();
 
@@ -26,52 +23,46 @@ class EditableField implements OnInit, OnChanges, AfterViewChecked{
   @ViewChild('textbox')
   ElementRef textbox;
 
-
   int get fieldSize {
     return fieldValue.length;
   }
 
-    editText() {
-      isEdit = true;
+  editText() {
+    isEdit = true;
+  }
+
+  onEnter(KeyboardEvent event, String inputValue) {
+    isEdit = false;
+    print(fieldValue.hashCode);
+    fieldValue = inputValue;
+    _editRequest.add(inputValue);
+
+    print(fieldValue.hashCode);
+  }
+
+  onBlur() {
+    isEdit = false;
+  }
+
+  @override
+  ngOnChanges(Map<String, SimpleChange> changes) {
+    print('on changes');
+    print(changes);
+    // TODO: implement ngOnChanges
+  }
+
+  @override
+  ngOnInit() {
+    // при инициализации поле в нередактируемом состоянии
+    isEdit = false;
+    // TODO: implement ngOnInit
+  }
+
+  @override
+  ngAfterViewChecked() {
+    if (textbox != null) {
+      /** установка фокуса на input element */
+      textbox.nativeElement.focus();
     }
-
-    onEnter(KeyboardEvent event, String inputValue) {
-      isEdit = false;
-      print(fieldValue.hashCode);
-      fieldValue = inputValue;
-      _editRequest.add(inputValue);
-
-      print(fieldValue.hashCode);
-    }
-
-    onBlur() {
-      isEdit = false;
-
-    }
-
-    @override
-    ngOnChanges(Map<String, SimpleChange> changes) {
-      print('on changes');
-      print(changes);
-      // TODO: implement ngOnChanges
-    }
-
-    @override
-    ngOnInit() {
-      // при инициализации поле в нередактируемом состоянии
-      isEdit = false;
-      // TODO: implement ngOnInit
-    }
-
-
-    @override
-    ngAfterViewChecked() {
-      if(textbox != null){
-        /** установка фокуса на input element */
-        textbox.nativeElement.focus();
-
-
-      }
-
   }
 }

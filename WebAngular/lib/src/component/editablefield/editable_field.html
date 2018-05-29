@@ -2,7 +2,7 @@
        (keyup.enter)="onEnter($event, textbox.value)"
        *ngIf="isEdit"
        type="text"
-       [value] = "fieldValue"
+       [value]="fieldValue"
        #textbox
        [size]="fieldSize"
 

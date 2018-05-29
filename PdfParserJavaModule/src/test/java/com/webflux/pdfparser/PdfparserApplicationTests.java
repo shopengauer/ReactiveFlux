@@ -22,22 +22,22 @@ import java.util.List;
 public class PdfparserApplicationTests {
 
 
-	@Autowired
-	private RouterFunction uploadRouterFunction;
+    @Autowired
+    private RouterFunction uploadRouterFunction;
 
-	private WebTestClient testClient;
+    private WebTestClient testClient;
 
-	@Before
-	public void setUp() throws Exception {
-		testClient = WebTestClient.bindToRouterFunction(uploadRouterFunction)
-				.configureClient().build();
-	}
+    @Before
+    public void setUp() throws Exception {
+        testClient = WebTestClient.bindToRouterFunction(uploadRouterFunction)
+                .configureClient().build();
+    }
 
-	@Test
-	public void contextLoads() {
+    @Test
+    public void contextLoads() {
 
 
-      //  testClient.post().accept(MediaType.APPLICATION_JSON).body(BodyInserters.fromMultipartData()).
-	}
+        //  testClient.post().accept(MediaType.APPLICATION_JSON).body(BodyInserters.fromMultipartData()).
+    }
 
 }

@@ -9,7 +9,6 @@ import 'package:WebAngular/src/services/word_http_service.dart';
 import 'package:angular/angular.dart';
 import 'package:bootjack/bootjack.dart';
 
-
 @Component(
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
@@ -26,11 +25,6 @@ import 'package:bootjack/bootjack.dart';
   providers: const [WordHttpService],
 )
 class AppComponent implements OnInit {
-
-
   @override
-  ngOnInit() async {
-
-  }
-
+  ngOnInit() async {}
 }

@@ -3,10 +3,9 @@
 <p>XHR upload form</p>
 
 
-
-<input #file type="file" multiple = "true" (change)="setFilesName(file.files)"/>
-<button (click) = "submitXhrForm(file.files)" value="Upload">Upload</button>
-<button (click) = "file.value='';fileNames.clear();" value="Clear">Clear</button>
+<input #file type="file" multiple="true" (change)="setFilesName(file.files)"/>
+<button (click)="submitXhrForm(file.files)" value="Upload">Upload</button>
+<button (click)="file.value='';fileNames.clear();" value="Clear">Clear</button>
 
 
 <li *ngFor="let f of fileNames">{{f}}</li>

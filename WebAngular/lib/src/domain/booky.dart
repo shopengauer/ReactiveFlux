@@ -34,14 +34,12 @@ class Booky {
         break;
 
       case 3:
-
         year = new DateTime(int.parse(value));
         break;
 
       case 4:
         description = value;
         break;
-
     }
   }
 }

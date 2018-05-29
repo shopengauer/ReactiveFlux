@@ -1,8 +1,6 @@
 import 'package:WebAngular/src/domain/booky.dart';
 
-
-class TestBooks{
-
+class TestBooks {
   List<Booky> mockBookList = [
     new Booky.createBook("Java in action", ["Karl Mellown"], "83298377394",
         new DateTime(2017), "God book"),
@@ -25,6 +23,4 @@ class TestBooks{
     "Date",
     "Description"
   ];
-
-
 }

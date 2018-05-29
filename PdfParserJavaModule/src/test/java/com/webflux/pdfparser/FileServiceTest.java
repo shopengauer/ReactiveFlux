@@ -32,14 +32,14 @@ public class FileServiceTest {
 
     @Test
     public void createAndDeleteTestFiles() throws IOException {
-      //  fileService.createEmptyFilesInBasePath(testFilenames);
-      //  fileService.deleteAllFilesInBasePath();
-      //  Assert.assertTrue(fileService.isBaseFilePathEmpty());
-      //  getClass().getClassLoader().getResource("/uploadfiles/1.xml")
+        //  fileService.createEmptyFilesInBasePath(testFilenames);
+        //  fileService.deleteAllFilesInBasePath();
+        //  Assert.assertTrue(fileService.isBaseFilePathEmpty());
+        //  getClass().getClassLoader().getResource("/uploadfiles/1.xml")
 
         ;
-     // File[] file = new ClassPathResource("/uploadfiles").getFile().listFiles();
-     //   System.out.println();
+        // File[] file = new ClassPathResource("/uploadfiles").getFile().listFiles();
+        //   System.out.println();
         System.out.println(FileUtils.getUserDirectoryPath());
     }
 }
